@@ -4,32 +4,27 @@
 using namespace std;
 using set =   unordered_set<char>; 
 
-int main(){
+using ll  =  long long;
 
+int main(){
   string S;
-  
   cin >> S;
-  size str_end = S.length();
-  size_t len_curr = S.length();
-  int start, end;
-  start = 0;
-  end  = 1;
+  ll len_curr{0};
+  ll start{0}; // use to follow the index of loop 
+
+ // as per the fking editorial 
+  for(ll i =0;i < ll(S.length());i++){
   
-  set my_set;
-  
-  my_set.insert(S[start]);
-  my_set.insert(S[end]);
-  
-  while(end != str_len || start !=str_len){
-        
-        if(end != str_len ){
-          
-        
-        }else if(end != str_len){
-          
-        }
+     if(S[i] == S[i+1] ||  i+1 == ll(S.length()) ){
+        len_curr += ((i- start +1) * ((i-start)+2)/2);
+      	start = i+1;
+    }
+
   }
-  
-  
-  return 0;
+
+   cout << len_curr % 998244353 << endl;
+
+   return 0;
+
 }
+
