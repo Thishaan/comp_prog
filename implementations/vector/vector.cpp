@@ -1,5 +1,5 @@
 #include "vector.h"
-
+//#include <vector>
 template <typename T> 
 void vector<T>::push_back(T elem){
 
@@ -43,4 +43,19 @@ T vector<T>::back(){
 template <typename T> 
 T vector<T>::operator[](size_t index){
     return arr[index];
+}
+
+
+template <typename T> 
+bool vector<T>::operator==(vector & other){
+
+    if (size != other.size) 
+        return false;
+        
+    for(size_t i =0;  i < size; i++){
+        if (other[i] != *this[i])
+            return false;
+     }
+
+     return true;
 }

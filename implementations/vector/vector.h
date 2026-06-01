@@ -1,21 +1,77 @@
 #include <cstdlib>
+#
+
+
+    // an iterator over the class
+template<typename vector>
+
+struct iterator{
+
+        public:
+
+        using ValueType =  vector::ValType;
+        using PointerType = ValueType*;
+        using ReferenceType = ValueType&;
+
+        inline iterator(PointerType pointer ) : m_ptr(pointer) {} ;
+
+        
+        inline vector& operator++(){
+            m_ptr++;
+            return *this;
+        }
+
+        inline  vector& operator--(){
+             m_ptr--;
+            return *this;
+        }
+        inline  vector& operator++(int){
+            iterator it =  *this;
+            ++(*this);
+            return it;
+        }
+        inline  vector& operator++(int){
+            iterator it =  *this;
+            --(*this);
+            return it;
+        }
+        inline ReferenceType operator[](size_t idx){
+            return *(m_ptr + idx);
+        }  
+        inline PointerType operator->(){
+            return (m_ptr);
+        } 
+
+        inline ReferenceType operator*(){
+                 return *(m_ptr);
+        }
+
+        inline bool operator==(const iterator & other) const{
+
+            return other.m_ptr == m_ptr;
+        }
+
+         inline bool operator!=(const iterator & other) const{
+
+            return !(this == other);
+        }
+
+
+        private:
+            PointerType * m_ptr; 
+};
+
+
 
 template<typename T>
 
 class vector{
-    typedef struct itearator{
-        T * iterator; 
-    }iter;
-
-    private:
-
-    T * arr; // underlying array
-    size_t size;
-    size_t capacity;
+    
 
     public:
+    using ValType = T;
+    using iter = iterator<vector<T>>;
 
-   
         // should not throw an exception
     inline vector(size_t size=0, T val = 0) noexcept{
 
@@ -55,9 +111,18 @@ class vector{
 
     void pop_back();
 
+    inline T begin(){
+            return m_ptr;
+        }
+    inline T end(){
+            return (m_ptr + size)
+        }
 
+    private:
 
-
+    T * arr; // underlying array
+    size_t size;
+    size_t capacity;
 
 
 };
