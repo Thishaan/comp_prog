@@ -1,9 +1,13 @@
 #include <cstdlib>
-#
+#include<initializer_list>
+#include <stddef.h>
 
 
     // an iterator over the class
 template<typename vector>
+
+
+
 
 struct iterator{
 
@@ -94,9 +98,12 @@ class vector{
     void push_back(T elem);
     //void swap();
     bool operator==(vector & other);
-    vector opreator=(const vector & other);
-    vector opreator=(vector & other);
+    vector operator=(const vector & other);
+    vector operator=(vector & other);
+    // copy constructors
 
+    //vector(const vector& other);
+    vector & operator=(std::initializer_list<T> & list); 
 
     T at(size_t index);
     T front();

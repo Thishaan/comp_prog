@@ -59,3 +59,22 @@ bool vector<T>::operator==(vector & other){
 
      return true;
 }
+
+
+template <typename T> 
+vector<T> & vector<T>::operator=(std::initializer_list<T> & elems){
+
+        delete[] arr; // delete array
+        size_t i{0};
+        arr =  new T[2*elems.size()];
+        
+    
+        for(const T& elem : elems)
+            arr[i++] = elem;
+
+
+        capacity=  2*elems.size();
+        size = elems.size();
+        return *(this);
+}
+
