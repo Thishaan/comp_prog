@@ -24,10 +24,13 @@ class CirculBuffer{
         }
         arr = new T[cap];   // allocate on heap 
      }
+
+
+     
     CirculBuffer& operator=(const CirculBuffer& other){
 
         if (this == &other) return *this;
-        
+
         if(arr)
             delete[] arr;              // free what this currently owns
 
@@ -54,8 +57,8 @@ class CirculBuffer{
          //  throw std::out_of_range("size curently equals capacity");
         }
         arr[r]  = elem;
-        r = (r+1)%capacity;
         count++;
+        r = (count)%capacity;
 
      }
 
